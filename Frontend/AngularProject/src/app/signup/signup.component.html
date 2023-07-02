@@ -1,0 +1,71 @@
+<div class="form-container">
+    <div class="form signup">
+        <form [formGroup]="frm" (ngSubmit)="onPost()">
+            <div class="title">
+                Signup
+            </div>
+
+            <div class="input-container">
+                <input type="text" name="name" class="input" placeholder="Name" formControlName="name">
+            </div>
+            <div class="msg error" *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)">
+                <span *ngIf="f['name'].errors?.['required']">
+                    Name is required
+                </span>
+            </div>
+
+            <div class="input-container">
+                <input type="text" formControlName="username" name="username" class="input" placeholder="Username">
+            </div>
+
+            <div class="msg error" *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+                <span *ngIf="f['username'].errors?.['required']">
+                    Username is required
+                </span>
+            </div>
+
+            <div class="input-container">
+                <input formControlName="email" type="email" name="email" class="input" placeholder="Email">
+            </div>
+
+            <div class="msg error" *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+                <span *ngIf="f['email'].errors?.['required']">
+                    Email is required
+                </span>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" formControlName="roles" name="roles" class="input" placeholder="Roles">
+            </div>
+
+            <div class="msg error" *ngIf="f['roles'].invalid && (f['roles'].dirty || f['roles'].touched)">
+                <span *ngIf="f['roles'].errors?.['required']">
+                    Roles is required
+                </span>
+            </div>
+
+            <div class="input-container">
+                <input type="password" formControlName="password" name="password" class="input"
+                    placeholder="Password (Format: Abc@1r)">
+            </div>
+
+            <div class="msg error" *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                <span *ngIf="f['password'].errors?.['required']">
+                    Password is required
+                </span>
+                <span *ngIf="f['password'].errors?.['invalidPattern']">
+                    Atleast 6 character long,must contain 1 uppercase, 1 lowercase, 1 digit and 1 special character
+                </span>
+            </div>
+
+            
+            <button type="submit" id="btnSubmit" [disabled]="frm.invalid">Signup</button>
+
+            <div class="msg light" *ngIf="status">
+                {{status.message}}
+            </div>
+
+            <a routerLink="/login" class="link">Already a member? Login here</a>
+        </form>
+    </div>
+</div>

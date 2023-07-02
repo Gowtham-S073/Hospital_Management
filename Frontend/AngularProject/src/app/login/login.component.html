@@ -1,0 +1,36 @@
+<div class="log">
+<div class="form-container">
+  <div class="form login">
+    
+      <form [formGroup]="form" (ngSubmit)="onPost()">
+      <div class="title">
+         Login
+      </div>
+      <div class="input-container"> 
+         <input type="text" formControlName="username" name="username" class="input" placeholder="Username">
+     </div>
+     <div class="msg error" *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+      <span *ngIf="f['username'].errors?.['required']">
+          Username is required  
+    </span>
+   </div>
+  
+     <div class="input-container"> 
+         <input type="password" formControlName="password" name="password" class="input" placeholder="Password">
+     </div>
+     <div class="msg error" *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+      <span *ngIf="f['password'].errors?.['required']">
+          Password is required  
+    </span>
+    </div>
+  
+     
+     <button type="submit" id="btnSubmit">Login</button>
+     <div class="msg light" *ngIf="status">
+         {{status.message}}
+     </div>
+       <a routerLink="/signup" class="link">Not a member? Signup here</a>
+      </form>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,216 @@
+
+<div class="content">
+    <div class="card">  
+
+        <span class="heading" *ngIf="status">{{status.message}}</span> 
+    </div>
+ </div>
+
+ <head><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+
+        
+<div class="button">  
+    
+    <div><button (click)="openPopup3()" >GET DETAILS BY ID</button></div>
+    <div><button (click)="openPopup()" >ADD DETAIL</button></div>
+    <div><button (click)="openPopup1()">UPDATE DETAIL</button></div>
+    <div><button (click)="openPopup2()">DELETE DETAIL</button></div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">MenuId</th>
+            <th scope="col">EventName</th>
+            <th scope="col">MenuName</th>
+            <th scope="col">MenuDesc</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let menu of Menus">
+            <td>{{menu.menuId}}</td>
+            <td>{{menu.eventName}}</td>
+            <td>{{menu.menuName}}</td>
+            <td>{{menu.menuDesc}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+
+ <div class="dialog-box" id="popup">
+    <i class="fa-solid fa-xmark fa-lg" (click)="closePopup()"></i>
+    <div class="form-wrapper">
+      <div class="form-container">
+        <h2>ADD MENU</h2>
+        <form [formGroup]="AddForm">
+          <label for="name">MenuId</label>
+          <input
+            type="text"
+            id="name"
+            name="menuId"
+            placeholder="MenuId"
+            formControlName="menuId"
+            required
+          />
+
+          <label for="name">EventName</label>
+          <input
+            id="name"
+            name="eventName"
+            placeholder="EventName"
+            formControlName="eventName"
+            required
+          />
+          <label for="name">MenuName</label>
+          <input
+            id="name"
+            name="menuName"
+            placeholder="MenuName"
+            formControlName="menuName"
+            required
+          />
+          <label for="MenuDesc">MenuDesc</label>
+          <input
+            id="name"
+            name="menuDesc"
+            placeholder="MenuDesc"
+            formControlName="menuDesc"
+            required
+          />
+        
+          <input type="submit" value="Submit" (click)="PostMenu()" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+   
+<div class="dialog-box1" id="popup1" >
+    <i class="fa-solid fa-xmark fa-lg" (click)="closePopup1()"></i>
+    <div class="form-wrapper">
+      <div class="form-container">
+        <h2>UPDATE MENU</h2>
+        <form>
+            <label for="name">Menu Id:</label>
+            <input id="name" name="menuId"  [(ngModel)]="MenuList.menuId" required />
+            <label for="name">Event Name :</label>
+            <input
+           
+              id="name"
+              name="eventName"
+              [(ngModel)]="MenuList.eventName"
+              [ngModelOptions]="{ standalone: true }"
+              required
+            />
+            <label for="name">Menu Name:</label>
+            <input
+             
+              id="name"
+              name="menuName"
+              [(ngModel)]="MenuList.menuName"
+              [ngModelOptions]="{ standalone: true }"
+              required
+            />
+            <label for="name">MenuDesc : </label>
+            <input
+              
+              id="name"
+              name="menuDesc"
+              [(ngModel)]="MenuList.menuDesc"
+              [ngModelOptions]="{ standalone: true }"
+              required
+            />
+            <button (click)="PutMenu()">Update</button>
+          </form>
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="dialog-box2" id="popup2">
+    <i class="fa-solid fa-xmark fa-lg" (click)="closePopup2()"></i>
+    <div class="form-wrapper">
+      <div class="form-container">
+        <h2>DELETE MENU</h2>
+        <form>
+            <label for="name">Menu ID:</label>
+            <input
+              id="name"
+              name="MenuId"
+              [(ngModel)]="menuId"
+              [ngModelOptions]="{ standalone: true }"
+              required
+            />
+            <button (click)="DeleteMenu()">Delete</button>
+          </form>
+      
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-box3" id="popup3">
+    <i class="fa-solid fa-xmark fa-lg" (click)="closePopup3()"></i>
+    <div class="form-wrapper">
+      <div class="form-container">
+        <h2>GET DETAILS BY ID</h2>
+        <form>
+            <label for="name">Menu ID:</label>
+            <input
+              id="name"
+              name="menuByID"
+              [(ngModel)]="menuId"
+              [ngModelOptions]="{ standalone: true }"
+              required
+            />
+            
+            <button (click)="GetMenuId()">GET DETAILS</button>
+
+          </form>
+    
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-box3" id="popup4">
+    <i class="fa-solid fa-xmark fa-lg" (click)="closePopup4()"></i>
+    <div class="form-wrapper">
+      <div class="form-container">
+        <h2>DETAILS BY ID</h2>
+        <p *ngIf="results" ></p>
+        <table class="table-responsive table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">EventName</th>
+                    <th scope="col">menuName</th>
+                    <th scope="col">menuDisc</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <td>{{results.menuId}}</td>
+                    <td>{{results.eventName}}</td>
+                    <td>{{results.menuName}}</td>
+                    <td>{{results.menuDesc}}</td>
+                </tr>
+        
+            </tbody>
+        </table>
+    
+      </div>
+    </div>
+  </div>
+
+
+            
