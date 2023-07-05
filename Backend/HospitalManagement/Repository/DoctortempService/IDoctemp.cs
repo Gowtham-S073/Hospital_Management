@@ -6,6 +6,8 @@ namespace HospitalManagement.Repository.Doctortemp
     {
         Task<List<DoctorTemp>> GetDoctorDetails();
 
+        
+
         Task<List<DoctorTemp>> PostDoctorDetails(DoctorTemp doctemp);
 
         Task<string> DeleteDoctorDetail(string id);

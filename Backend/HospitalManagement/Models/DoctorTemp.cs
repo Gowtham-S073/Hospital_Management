@@ -4,22 +4,19 @@ using System.Numerics;
 namespace HospitalManagement.Models
 {
     public class DoctorTemp
-    { 
-        [Key]
+    {
         [Required]
-        public string UserName { get; set; }
+        public string? Name { get; set; }
+        [Key]
+        public string? UserName { get; set; }
+        [Required]
         public string? Email { get; set; }
-        public int? Age { get; set; }
-        public string? Sex { get; set; }
+
+        [Required]
+        public string Roles { get; set; } = string.Empty;
+
+        [Required]
         public string? Password { get; set; }
-        public string? BloodGroup { get; set; }
-        public string? Specialization { get; set; }
-        public string? Experience { get; set; }
-        
-        public Int64? PhoneNumber { get; set; }
-        
-        public string? Address { get; set; }
-        
-        public ICollection<AppointmentDetail?> Appointments { get; set; } = new List<AppointmentDetail>();
+
     }
 }

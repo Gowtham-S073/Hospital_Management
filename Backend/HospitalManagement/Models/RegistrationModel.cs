@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿    using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HospitalManagement.Models
@@ -7,6 +7,7 @@ namespace HospitalManagement.Models
     {
         [Required]
         public string? Name { get; set; }
+        [Key]
         [Required]
         public string? UserName { get; set; }
         [Required]

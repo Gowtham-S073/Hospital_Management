@@ -1,79 +1,206 @@
-/* Custom Styles */
+/* NavBar */
+.navbar h6{
+  color: rgb(0, 0, 0);
+  float: left;
+  background-color: #ffffff;
+  overflow: auto;
+  font-size: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-top: 10px;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    border: 4px solid goldenrod; /* Add border style */
-    border-radius: 8px; /* Add border radius */
+
+.navbar {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    overflow: auto;
   }
   
-  .form.signup .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .form .input-container {
-    margin-bottom: 15px;
-  }
-  
-  .form .input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid goldenrod;
-    border-radius: 4px;
-  }
-  
-  .form .msg {
-    margin-top: 5px;
-    font-size: 14px;
-    color: #dc3545;
-  }
-  
-  .form .msg.light {
-    color: #0b0e11;
-  }
-  
-  .form button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(10, 30, 60);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .form .link {
-    display: block;
-    margin-top: 15px;
+  /* Navbar links */
+  .navbar a {
+    float: right;
     text-align: center;
+    padding: 12px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 17px;
   }
   
-  /* Bootstrap Overrides */
-  .input:invalid {
-    border-color: #dc3545;
+  /* Navbar links on mouse-over */
+  .navbar a:hover {
+    background-color: #4422ff;
+    color: white;
   }
   
-  .input:focus,
-  .input:active {
-    outline: none;
-    box-shadow: none;
+  /* Current/active navbar link */
+  .active {
+    background-color: #4422ff;
+    color: white;
   }
   
-  .msg.error {
-    display: none;
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
+
+
+/* --------------------------------------------------------------------------------------------------- */
+/* h1 */
+.background-image {
+  position: relative;
+  width: 100%;
+  background-image: linear-gradient(180deg,transparent 30%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.5));
+  height: 395px; 
+  background-image: url('../../assets/appoint1.png'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* --------------------------------------------------------------------------------------------------- */
+
+.Patient_Form {
+  max-width: 400px;
+  margin: 40px auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],#date,#age,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #071929;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #25D366;
+}
+
+select.doctor-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333; 
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+  /* Footer */
+  .footer-clean {
+    padding:50px 0;
+    background-color:#fff;
+    color:#4b4c4d;
   }
   
-  .msg.error span {
-    display: block;
+  .footer-clean h3 {
+    margin-top:0;
+    margin-bottom:12px;
+    font-weight:bold;
+    font-size:16px;
   }
   
-  .msg.error span.ng-star-inserted {
-    margin-left: 5px;
+  .footer-clean ul {
+    padding:0;
+    list-style:none;
+    line-height:1.6;
+    font-size:14px;
+    margin-bottom:0;
+  }
+  
+  .footer-clean ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+  }
+  
+  .footer-clean ul a:hover {
+    opacity:1;
+  }
+  
+  .footer-clean .item.social {
+    text-align:right;
+  }
+  
+  @media (max-width:767px) {
+    .footer-clean .item {
+      text-align:center;
+      padding-bottom:20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-clean .item.social {
+      text-align:center;
+    }
+  }
+  
+  .footer-clean .item.social > a {
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #ccc;
+    margin-left:10px;
+    margin-top:22px;
+    color:inherit;
+    opacity:0.75;
+  }
+  
+  .footer-clean .item.social > a:hover {
+    opacity:0.9;
+  }
+  
+  @media (max-width:991px) {
+    .footer-clean .item.social > a {
+      margin-top:40px;
+    }
+  }
+  
+  @media (max-width:767px) {
+    .footer-clean .item.social > a {
+      margin-top:10px;
+    }
+  }
+  
+  .footer-clean .copyright {
+    margin-top:14px;
+    margin-bottom:0;
+    font-size:13px;
+    opacity:0.6;
   }
   

@@ -5,6 +5,7 @@ import { ApiService } from '../service/api.service';
 import { ProtectedService } from '../service/protected.service';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { SignupService } from '../service/signup.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,132 +13,43 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./admin.component.css']
 })
 
-export class AdminComponent implements OnInit{
-  public clicked:boolean = false;
-  public results!: any;
-  public Getmenubyid! : string
-  public Menus!: any
-  public AddForm!: FormGroup;
-  status!:Status;
-  
-  constructor(private protectedService:ProtectedService, private formBuilder: FormBuilder,private api: ApiService) { }
-
+export class AdminComponent {
+  constructor(private api: ApiService,
+    private formBuilder: FormBuilder,
+    private signup: SignupService
+  ) { }
   ngOnInit(): void {
-    this.Callgetmenus();
-
-    // this.protectedService.getAdminData().subscribe({
-    //   next: (res)=>{
-    //    this.status=res;
-    //   },
-    //   error: (err)=>{
-    //     console.log(err);      }
-    // })
-    this.init();
-   
+    this.getAllDoctorDetails()
   }
-  private init(): void {
-    this.AddForm = this.formBuilder.group({
-      menuId:[],
-      eventName:[],
-      menuName:[],
-      menuDesc:[]
+  AddForm!: FormGroup
+  DDoctors: any
+
+  private getAllDoctorDetails(): void {
+    this.api.GetDoctorTemp().subscribe(result => {
+      this.DDoctors = result
     });
   }
 
 
-  MenuList: any = {
-    menuId:'',
-    eventName:'',
-    menuName:'',
-    menuDesc:''
-  };
+  public Add(doctor: any): void {
+    this.signup.signup(doctor).subscribe({
+      next: (res) => {
+        console.log(res);
 
-  public PutMenu() {
-    console.log(this.MenuList);
-    return this.api.PutMenu(this.MenuList.menuId, this.MenuList)
-      .subscribe((result) => {
-        alert(' Data Updated ');
-      });
+      }
+    });
+    this.Deny(doctor)
   }
 
-  menuId!: string;
-
-
- public DeleteMenu(): void {
-    console.log('hi');
-    this.api.DeleteMenu(this.menuId).subscribe((res) => {
+  public Deny(doctor: any): void {
+    console.log(doctor)
+    this.api.tempdelete(doctor.userName).subscribe((res) => {
       alert('Deleted');
     });
-  }
-
-  public PostMenu():void {
-    console.log("Give the values");
-    this.api.PostMenu(this.AddForm.value).subscribe((result) => {
-      alert(' Data Added');
-    });
-  }
-  //  public menuByID!:string;
-  public GetMenuId(): void {
-    console.log(this.menuId);
-    this.api.GetMenu(this.menuId).subscribe((result) => {
-      this.results=result;
-      this.clicked=true;
-      alert(' Details Found ');
-      this.openPopup4();
-      console.log(this.results);
-});
-  }
-  private Callgetmenus(): void {
-    this.api.GetMenus().subscribe(result => {
-      this.Menus = result
-      console.log(this.Menus);
-    });
-
-  }
-  openPopup() {
-    let popup = document.getElementById('popup');
-    popup?.classList.add('open');
-  }
-  closePopup() {
-    let popup = document.getElementById('popup');
-    popup?.classList.remove('open');
-  }
-  openPopup1() {
-    let popup = document.getElementById('popup1');
-    popup?.classList.add('open');
-  }
-  closePopup1() {
-    let popup = document.getElementById('popup1');
-    popup?.classList.remove('open');
-  }
-  openPopup2() {
-    let popup = document.getElementById('popup2');
-    popup?.classList.add('open');
-  }
-  closePopup2() {
-    let popup = document.getElementById('popup2');
-    popup?.classList.remove('open');
-  }
-  openPopup3() {
-    let popup = document.getElementById('popup3');
-    popup?.classList.add('open');
-  }
-  openPopup4() {
-    let popup = document.getElementById('popup4');
-    popup?.classList.add('open');
-  }
-  closePopup3() {
-    let popup = document.getElementById('popup3');
-    popup?.classList.remove('open');
-  }
- 
-  closePopup4() {
-    let popup = document.getElementById('popup4');
-    popup?.classList.remove('open');
+    window.location.reload();
   }
 }
 
 
 
 
-  

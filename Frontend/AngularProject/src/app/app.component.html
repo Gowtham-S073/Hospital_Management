@@ -1,115 +1,85 @@
 <html>
-<body>
-  <!-- ----------------------------------------------------------------------------------------------------- -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
-<!-- <app-navbar></app-navbar> -->
-<app-login></app-login>
-<app-signup></app-signup>
-<!-- <app-homepage></app-homepage> -->
-<!-- <app-main-page></app-main-page> -->
-<!-- <app-admin-page></app-admin-page> -->
-<!-- <app-doctor-page></app-doctor-page> -->
-<app-patient-page></app-patient-page>
-<!-- ----------------------------------------------------------------------------------------------------- -->
-   
 
-<!-- ---------------------------------------------------------------------------------------------------- -->
-<!-- #Footer -->
-<!-- <div class="MeetUs">
-  <p>MEET US</p>
-<div class="top-sec sec07 aos-init aos-animate"
-  style="background-image: url('../assets/bg02.jpg');"
-  data-aos-offset="150" data-aos="fade-zoom-in">
-  <div class="container">
-    <div class="top-access-box">
-      <p class="top-ttl"><span class="en"></span></p>
-      <div class="content-wrapper">
-        <div class="iframe-wrapper"><iframe width="600" height="450" style="border: 0;"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125322.50873824842!2d76.967235!3d11.013968899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f971cb5%3A0x2fc1c81e183ed282!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1688209042230!5m2!1sen!2sin"
-            frameborder="0" allowfullscreen="allowfullscreen" aria-hidden="false" tabindex="0"></iframe></div>
-        <address class="address-text">Address:7/10, Ukkadam, Ghandipuram
-          ,Coimbatore</address>
-        <div class="btn-wrapper"><a href="/en/access.html" style="color:#4422ff; font-weight: bolder;" class="common-btn fw400">Get Directions</a></div>
-      </div>
+<div class="navbar">
+  <div class="left-section">
+    <h6><img src="../../assets/favicon_io/favicon.ico"> HOSPITAL</h6>
+  </div>
+
+  <div class="center-section">
+    <div class="menu" [class.open]="menuOpen">
+      <p>
+        <a class="active" [routerLink]="['/']"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="#About"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+        <a href="#"><i class="fa fa-address-card" aria-hidden="true"></i> About Us</a>
+        <a href="#"><i class="fa fa-hospital-o" aria-hidden="true"></i> Why SG Hospital</a>
+      </p>
+      <p>
+        <a [routerLink]="['DoctorPage']" *ngIf="role == 'Doctor'">Appointments</a>
+        <a [routerLink]="['AdminPage']" *ngIf="role == 'Admin'">Admin Dashboard</a>
+        <a [routerLink]="['PatientPage']" *ngIf="role == 'Patient'">Book Appointment</a>
+        <a [routerLink]="['login']" *ngIf="role == ''"><i class="fa fa-sign-in" aria-hidden="true"></i> Log-In</a>
+        <a (click)="logout()" *ngIf="role != ''">Logout</a>
+      </p>
     </div>
   </div>
+
+  <div class="right-section">
+    <div class="hamburger" (click)="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+  </div>
 </div>
-</div> -->
-<!-- ------------------------------------------------------------------------------------------------------ -->
-<div class="sticky-container d-none d-sm-none d-md-block">
-  <ul class="sticky">
+
+
+<body>
+
+
+  <!-- ----------------------------------------------------------------------------------------------------- -->
+  <router-outlet></router-outlet>
+  <!-- ----------------------------------------------------------------------------------------------------- -->
+
+
+
+  <!-- ------------------------------------------------------------------------------------------------------ -->
+  <div class="sticky-container d-none d-sm-none d-md-block">
+    <ul class="sticky">
       <li> <img src="../assets/sticky/facebook.svg" alt="facebook" width="32" height="32">
-          <p><a href="https://www.facebook.com/" target="_blank">Like Us on<br>
-                  Facebook</a></p>
+        <p><a href="https://www.facebook.com/" target="_blank">Like Us on<br>
+            Facebook</a></p>
       </li>
       <li> <img src="../assets/sticky/Twitter.svg" alt="kghospital" width="32" height="32">
-          <p><a href="https://twitter.com/" target="_blank">Follow Us on<br>
-                  Twitter</a></p>
+        <p><a href="https://twitter.com/" target="_blank">Follow Us on<br>
+            Twitter</a></p>
       </li>
       <li> <img src="../assets/sticky/LinkedIn.svg" alt="kghospital LinkedIn" width="32" height="32">
-          <p><a href="https://www.linkedin.com/" target="_blank">Follow Us
-                  on<br>
-                  Linkedin</a></p>
+        <p><a href="https://www.linkedin.com/" target="_blank">Follow Us
+            on<br>
+            Linkedin</a></p>
       </li>
       <li> <img src="../assets/sticky/youtube.svg" alt="youtube" width="32" height="32">
-          <p><a href="https://www.youtube.com/" target="_blank">Subscribe
-                  on<br>
-                  YouTube </a></p>
-      </li> 
+        <p><a href="https://www.youtube.com/" target="_blank">Subscribe
+            on<br>
+            YouTube </a></p>
+      </li>
       <li> <img src="../assets/sticky/instagram.svg" alt="instagram" width="32" height="32">
-          <p><a href="https://www.instagram.com/" target="_blank"> Follow Us on<br>
-                  instagram</a> </p>
+        <p><a href="https://www.instagram.com/" target="_blank"> Follow Us on<br>
+            instagram</a> </p>
       </li>
       <li> <img src="../assets/sticky/whatsApp.svg" alt="whatsApp" width="32" height="32">
-          <p><a href="https://wa.me/+919344148240" target="_blank">Chat on <br>
-                  WhatsApp </a></p>
+        <p><a href="https://wa.me/+919344148240" target="_blank">Chat on <br>
+            WhatsApp </a></p>
       </li>
-  </ul>
-</div>
+    </ul>
+  </div>
 
-<!-- ----------------------------------------------------------------------------------------------- -->
-
-
- 
-<div class="footer-clean">
-  <footer>
-      <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-sm-4 col-md-3 item">
-                  <h3>Services</h3>
-                  <ul>
-                      <li><a href="#">Web design</a></li>
-                      <li><a href="#">Development</a></li>
-                      <li><a href="#">Hosting</a></li>
-                  </ul>
-              </div>
-              <div class="col-sm-4 col-md-3 item">
-                  <h3>About</h3>
-                  <ul>
-                      <li><a href="#">Company</a></li>
-                      <li><a href="#">Team</a></li>
-                      <li><a href="#">Legacy</a></li>
-                  </ul>
-              </div>
-              <div class="col-sm-4 col-md-3 item">
-                  <h3>Careers</h3>
-                  <ul>
-                      <li><a href="#">Job openings</a></li>
-                      <li><a href="#">Employee success</a></li>
-                      <li><a href="#">Benefits</a></li>
-                  </ul>
-              </div>
-              <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                  <p class="copyright">Company Name © 2018</p>
-              </div>
-          </div>
-      </div>
-  </footer>
-</div>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
+  <!-- ----------------------------------------------------------------------------------------------- -->
 
 
 </body>

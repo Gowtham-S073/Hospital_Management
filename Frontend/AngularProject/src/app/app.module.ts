@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import {  FormGroup, FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,11 +9,12 @@ import { SignupComponent } from './signup/signup.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './Admin/admin.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 import { PatientPageComponent } from './patient-page/patient-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { DoctorspageComponent } from './doctor-page/doctor-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -24,19 +25,21 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     UserComponent,
     AdminComponent,
     HomepageComponent,
-    NavbarComponent,
     MainPageComponent,
-    DoctorPageComponent,
     PatientPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    DoctorspageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,FormsModule
-  ],
+    ReactiveFormsModule,
+    BrowserAnimationsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

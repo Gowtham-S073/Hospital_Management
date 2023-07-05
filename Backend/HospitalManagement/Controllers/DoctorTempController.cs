@@ -18,19 +18,48 @@ namespace HospitalManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<List<DoctorTemp>> GetDoctorDetails()
+        public async Task<IActionResult> GetDoctorDetails()
         {
-            return await _context.GetDoctorDetails();
+            try
+            {
+                var doctorDetails = await _context.GetDoctorDetails();
+                return Ok(doctorDetails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while retrieving doctor details.");
+            }
         }
+
         [HttpPost]
-        public async Task<ActionResult<List<DoctorTemp>>> PostDoctorDetails(DoctorTemp docDetail)
+        public async Task<IActionResult> PostDoctorDetails(DoctorTemp docDetail)
         {
-            return await _context.PostDoctorDetails(docDetail);
+            try
+            {
+                var result = await _context.PostDoctorDetails(docDetail);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while saving doctor details.");
+            }
         }
+
         [HttpDelete]
-        public async Task<string> DeleteDoctorDetail(string Username)
+        public async Task<IActionResult> DeleteDoctorDetail(string Username)
         {
-            return await _context.DeleteDoctorDetail(Username);
+            try
+            {
+                var result = await _context.DeleteDoctorDetail(Username);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while deleting doctor details.");
+            }
         }
     }
 }

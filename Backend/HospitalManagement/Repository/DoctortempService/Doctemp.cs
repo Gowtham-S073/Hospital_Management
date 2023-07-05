@@ -16,6 +16,7 @@ namespace HospitalManagement.Repository.Doctortemp
             var details = await _dbcontext.DoctorTemp.ToListAsync();
             return details;
         }
+        
         public async Task<List<DoctorTemp>> PostDoctorDetails(DoctorTemp doctemp)
         {
             _dbcontext.DoctorTemp.Add(doctemp);

@@ -15,6 +15,7 @@ namespace HospitalManagement.Models
         public DbSet<DoctorDetails> DoctorDetails { get; set; }
         public DbSet<DoctorTemp> DoctorTemp { get; set; }
 
+        public DbSet<RegistrationModel> RegistrationModels { get; set; }
 
     }
 

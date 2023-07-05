@@ -6,8 +6,7 @@ namespace HospitalManagement.Repository.DoctorDetail
     public interface IDocDetail
     {
         Task<List<DoctorDetails>> GetAllDoctorDetails();
-        Task<string> DeleteDoctorDetails(int id);
-
+        Task<List<DoctorDetails>> GetDoctorDetailbyUsername(string id);
         Task<List<DoctorDetails>> PostDoctorDetails(DoctorDetails docDetail);
 
     }

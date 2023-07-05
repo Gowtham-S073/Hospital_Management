@@ -6,21 +6,37 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  
+  // getAllAppointmentDetails() {
+  //   throw new Error('Method not implemented.');
+  // }
+  //     return this.http.put(url,Menus);
+  //   }
+  // --------------------------------------------------------------------------------------------
+  //Doctor Details
+  deleteDoctorDetails(id: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http:HttpClient) { }
 
   //user part
-  public GetAllAppointments():Observable<any>
-  {
-    console.log("GA");
-    return this.http.get('https://localhost:7118/api/Appoint/GetAllAppointments')
+  // public GetAllAppointments():Observable<any>
+  // {
+  //   console.log("GA");
+  //   return this.http.get('https://localhost:7118/api/Appoint/GetAllAppointments')
     
-  }
+  // }
  
   public PostAppointment(AppointmentDetail: any): Observable<any> {
     return this.http.post('https://localhost:7118/api/Appoint/PostAppointment',
     AppointmentDetail
     );
+  }
+
+
+  public tempdelete(username:string):Observable<any>{
+    return this.http.delete(`https://localhost:7118/api/DoctorTemp?Username=`+username)
   }
   // --------------------------------------------------------------------------------------------
   // public DeleteMenu(menuId: any): Observable<any> {
@@ -49,9 +65,25 @@ export class ApiService {
   }
 
   //DoctorTemp
-  public GetDoctorTemp(doctors:any) :Observable<any> {
-    return this.http.post('https://localhost:7118/api/DoctorTemp',doctors);
+  public GetDoctorTemp() :Observable<any> {
+    return this.http.get('https://localhost:7118/api/DoctorTemp');
   }
+
+  public GetAppointmentDetails():Observable<any>{
+    return this.http.get(`https://localhost:7118/api/Appoint/GetAllAppointments`);
+  }
+// -----------------------------------------------------------------------------------------------
+public postDoctorDetails(DoctorDetail: any): Observable<any> {
+  return this.http.post('https://localhost:7266/api/DoctorDetail', DoctorDetail);
+}
+
+public GetDoctorDetailbyID(id: any): Observable<any> {
+  return this.http.get('https://localhost:7118/api/DoctorDetail/GetByID?id='+id );
+}
+
+
+
+
 
   // public getVeg():Observable<any>
   // {

@@ -1,6 +1,102 @@
 <head>
     <title>Patient_Form</title>
 </head>
-<div class="Patient_Form">
-<img src="../../assets/show/slide03.jpg">
+<div class="background-image">
 </div>
+
+<div class="Patient_Form">
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()" class="patient-form">
+        <div class="form-group">
+          <h3 style="text-align: center;font-weight: bold;">Enter Your Details</h3>
+          <label for="patientName">Patient Name</label>
+          <input type="text" id="patientName" formControlName="patientName" placeholder="Enter Patient Name " />
+        </div>
+  
+  
+        <div class="form-group">
+          <label for="sex">Sex</label>
+          <select id="sex" formControlName="sex">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+  
+        
+  
+        <div class="form-group">
+          <label for="Age">Age</label>
+          <input type="number" id="age" formControlName="age" placeholder="Enter your Age" />
+        </div>
+  
+  
+  
+  
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" formControlName="date" placeholder="Visiting Date" />
+        </div>
+  
+        <div class="form-group">
+          <label for="doctorId">Choose Your Doctor</label>
+  
+          <select class="doctor-select" formControlName="doctorId">
+            <option *ngFor="let doctor of DDoctors" [value]="doctor.id">{{ doctor.doctorName }}</option>
+          </select>
+          
+  
+        </div>
+  
+        <button type="submit" class="submit-button" (click)="Add()">Book</button>
+      </form>
+  
+    </div>
+      <!-- ------------------------------------------------------------------------------------------------- -->
+
+      <div class="footer-clean">
+        <footer>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-sm-4 col-md-3 item">
+                <h3>Centres Of Excellence</h3>
+                <ul>
+                  <li><a href="#">SG Heart Center</a></li>
+                  <li><a href="#">Neurology</a></li>
+                  <li><a href="#">Transplanation</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-4 col-md-3 item">
+                <h3>About</h3>
+                <ul>
+                  <li><a href="#">Hospital</a></li>
+                  <li><a href="#">Team</a></li>
+                  <li><a href="#">Legacy</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-4 col-md-3 item">
+                <h3>Patient Care</h3>
+                <ul>
+                  <li><a href="#">24X7 Emergency Care</a></li>
+                  <li><a href="#">Insurance</a></li>
+                  <li><a href="#">Find A Doctor</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 item social"><a href="https://www.facebook.com"><i
+                    class="icon ion-social-facebook"></i></a><a href="https://www.twitter.com"><i
+                    class="icon ion-social-twitter"></i></a><a href="https://www.snapchat.com"><i
+                    class="icon ion-social-snapchat"></i></a><a href="https://www.instagram.com"><i
+                    class="icon ion-social-instagram"></i></a>
+                <p class="copyright">SG HOSPITAL © 2018</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  
+
+
+   
+  

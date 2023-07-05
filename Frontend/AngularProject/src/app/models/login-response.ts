@@ -5,5 +5,6 @@ export interface LoginResponseModel extends Status{
          refreshToken :string,
          expiration:string,
          name:string,
-         username :string
+         username :string,
+         roles:string
 }

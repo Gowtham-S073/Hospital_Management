@@ -10,12 +10,12 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(private injector:Injector) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authService = this.injector.get(AuthService);
-    let tokenizedReq = req.clone({
+    let auth=this.injector.get(AuthService);
+    let tokenizedReq=req.clone({
       setHeaders:{
-        Authorization:`Bearer ${authService.getAccessToken()}`
-      }
+        Authorization: `Bearer ${auth
+          .getToken()}`      }
     });
     return next.handle(tokenizedReq);
-  }
+  }
 }

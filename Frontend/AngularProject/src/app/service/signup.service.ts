@@ -5,12 +5,13 @@ import { LoginResponseModel } from '../models/login-response';
 import { LoginRequestModel } from '../models/login-requestmodel';
 import { SignupRequestModel } from '../models/signup-request-model';
 import { Status } from '../models/status';
+import { TempRequestModel } from '../models/TempRequestModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
-  //private baseUrl = environment.baseUrl+'Authorization';
+  
   constructor(private http:HttpClient) { 
 
   }
@@ -21,6 +22,10 @@ export class SignupService {
 
   signup(model:SignupRequestModel){
      return this.http.post<Status>(`https://localhost:7118/api/Authorization/Registration`,model);
+  }
+
+  temp(model:TempRequestModel){
+    return this.http.post<Status>(`https://localhost:7118/api/DoctorTemp`,model);
   }
 
   chagePassword(model:ChangePasswrd){

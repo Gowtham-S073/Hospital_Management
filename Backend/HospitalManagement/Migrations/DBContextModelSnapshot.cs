@@ -111,9 +111,6 @@ namespace HospitalManagement.Migrations
                     b.Property<int?>("DoctorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DoctorTempUserName")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("PatientName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -129,8 +126,6 @@ namespace HospitalManagement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorDetailsid");
-
-                    b.HasIndex("DoctorTempUserName");
 
                     b.ToTable("Appointment");
                 });
@@ -173,23 +168,11 @@ namespace HospitalManagement.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Age")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("BloodGroup")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Experience")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -197,14 +180,7 @@ namespace HospitalManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("PhoneNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Sex")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Specialization")
+                    b.Property<string>("Roles")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -373,10 +349,6 @@ namespace HospitalManagement.Migrations
                     b.HasOne("HospitalManagement.Models.DoctorDetails", null)
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorDetailsid");
-
-                    b.HasOne("HospitalManagement.Models.DoctorTemp", null)
-                        .WithMany("Appointments")
-                        .HasForeignKey("DoctorTempUserName");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -431,11 +403,6 @@ namespace HospitalManagement.Migrations
                 });
 
             modelBuilder.Entity("HospitalManagement.Models.DoctorDetails", b =>
-                {
-                    b.Navigation("Appointments");
-                });
-
-            modelBuilder.Entity("HospitalManagement.Models.DoctorTemp", b =>
                 {
                     b.Navigation("Appointments");
                 });

@@ -15,7 +15,6 @@ namespace HospitalManagement.Controllers
         {
             this._ctx = ctx;
             this._service = service;
-
         }
         [Route("api/[controller]/Refresh")]
         [HttpPost]
@@ -58,7 +57,7 @@ namespace HospitalManagement.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
     }

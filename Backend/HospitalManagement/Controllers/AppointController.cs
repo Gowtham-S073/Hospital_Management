@@ -2,7 +2,10 @@
 using HospitalManagement.Repository.Appointment;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace HospitalManagement.Controllers
 {
@@ -18,18 +21,31 @@ namespace HospitalManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<List<AppointmentDetail>> GetAllAppointments()
+        public async Task<ActionResult<List<AppointmentDetail>>> GetAllAppointments()
         {
-            return await _dbcontext.GetAllAppointments();
+            try
+            {
+                return await _dbcontext.GetAllAppointments();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while retrieving appointments.");
+            }
         }
 
         [HttpPost]
-        public async Task<List<AppointmentDetail>> PostAppointment(AppointmentDetail appointmentDetail)
+        public async Task<ActionResult<List<AppointmentDetail>>> PostAppointment(AppointmentDetail appointmentDetail)
         {
-            return await _dbcontext.PostAppointment(appointmentDetail);
+            try
+            {
+                return await _dbcontext.PostAppointment(appointmentDetail);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating an appointment.");
+            }
         }
-
-
     }
-
 }

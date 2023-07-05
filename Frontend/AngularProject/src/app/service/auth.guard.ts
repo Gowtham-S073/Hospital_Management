@@ -8,24 +8,59 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  async canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot){
-    if (this.authService.isLoggedIn())
-      return true;
-    else{
-      // move to the login page
-      // if our refresh token expires,then it will refresh the token
-      const isRefreshed=  await this.authService.refreshingToken();
-        if(!isRefreshed){
-          this.router.navigate(['/login']);
-        }
+  constructor(private authService: AuthService, private router: Router) { }
 
-        return isRefreshed;
+  private isAllowed(): boolean {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    return !!(token && (role === 'Admin' || role === 'Doctor' || role === 'Patient'));
+  }
+
+  
+
+  canActivateDoctor(): boolean {
+    if (this.isAllowed() && localStorage.getItem('role') === 'Doctor') {
+      return true;
+    } else {
+      if(confirm('Authenticated users only allowed!!!'))
+      {
+       this.router.navigate(['/']);
+      }      return false;
     }
   }
-  
-  constructor(private authService:AuthService,private router:Router) {
-    
+
+  canActivatePatient(): boolean {
+    if (this.isAllowed() && localStorage.getItem('role') === 'Patient') {
+      return true;
+    } else {
+      if(confirm('Authenticated users only allowed!!!'))
+      {
+       this.router.navigate(['/']);
+      }      return false;
+    }
   }
+
+  canActivateAdmin(): boolean {
+    if (this.isAllowed() && localStorage.getItem('role') === 'Admin') {
+      return true;
+    } else {
+      if(confirm('Authenticated users only allowed!!!'))
+     {
+      this.router.navigate(['/']);
+     }
+      return false;
+    }
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    const allowedRoles = route.data['roles'] as string[];
+    const userRole = localStorage.getItem('role');
+
+    if (this.isAllowed() && userRole !== null && allowedRoles.includes(userRole)) {
+      return true;
+    } else {
+      alert('Restricted Access');
+      return this.router.createUrlTree(['/']);
+    }
+  }
 }

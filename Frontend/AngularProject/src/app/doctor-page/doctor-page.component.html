@@ -1,43 +1,69 @@
-<div class="container">
-    <form action="action_page.php">
-      <div class="row">
-        <div class="col-25">
-          <label for="fname">First Name</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Last Name</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="country">Country</label>
-        </div>
-        <div class="col-75">
-          <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="subject">Subject</label>
-        </div>
-        <div class="col-75">
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-        </div>
-      </div>
-      <div class="row">
-        <input type="submit" value="Submit">
-      </div>
-    </form>
+<div class="approval">
+    <h4 style="font-weight: bolder;margin-top: 10px;">Appointment Details</h4>
+
+
+    <table class="table" style="margin-top: 40px;">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Sex</th>
+                <th>Date</th>
+                <th>Doctor ID</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let doctor of DDoctors">
+                <td>{{doctor.patientName}}</td>
+                <td>{{doctor.sex}}</td>
+                <td>{{doctor.date}}</td>
+                <td>{{doctor.doctorId}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
+<!-- ------------------------------------------------------------------------------------------------- -->
+
+<div class="footer-clean">
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Centres Of Excellence</h3>
+                    <ul>
+                        <li><a href="#">SG Heart Center</a></li>
+                        <li><a href="#">Neurology</a></li>
+                        <li><a href="#">Transplanation</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Hospital</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Patient Care</h3>
+                    <ul>
+                        <li><a href="#">24X7 Emergency Care</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Find A Doctor</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="https://www.facebook.com"><i
+                            class="icon ion-social-facebook"></i></a><a href="https://www.twitter.com"><i
+                            class="icon ion-social-twitter"></i></a><a href="https://www.snapchat.com"><i
+                            class="icon ion-social-snapchat"></i></a><a href="https://www.instagram.com"><i
+                            class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">SG HOSPITAL © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
